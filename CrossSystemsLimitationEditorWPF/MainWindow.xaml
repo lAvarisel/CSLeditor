@@ -1,0 +1,137 @@
+<Window x:Class="CrossSystemsLimitationEditorWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrossSystemsLimitationEditorWPF"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        mc:Ignorable="d"
+        Title="CrossSystemsLimitationEditor" Height="687.388" Width="1228.825">
+    <Grid>
+        <TabControl x:Name="TabControl" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem x:Name="CrossSystemsLimitations" Header="CrossSystemsLimitations">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="327*"/>
+                        <ColumnDefinition Width="225*" MaxWidth="225"/>
+                    </Grid.ColumnDefinitions>
+                    <syncfusion:SfDataGrid 
+                        x:Name="dataGridLimitation"
+                        HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch" 
+                            FontFamily="Century Gothic" 
+                            FontSize="11" AllowFiltering="True" 
+                            AllowEditing="True" AllowResizingColumns="True" 
+                            ReuseRowsOnItemssourceChange="False" 
+                            AddNewRowPosition="FixedTop" 
+                            ShowGroupDropArea="True" 
+                            AllowDeleting="True" 
+                            Background="White" Margin="0,10,0.2,0" ColumnSizer="Star" GroupRowSelectionBrush="#6422FF00"/>
+
+
+                    <Button x:Name="LoadExcel" Grid.Column="1" Margin="17.8,10,17.2,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="165" Height="21" Click="LoadExcel_Click" Background="#FFFFFEFE">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentControl Width="16" Height="16">
+                                <Image Source="Source/icons8-импортировать-32.png" />
+                            </ContentControl>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"><Run Text="Load Excel CSL"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="LoadOntology" Grid.Column="1" Margin="30,62,29.8,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="165" Height="21" Background="#FFFFFEFE" Click="LoadOntology_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentControl Width="16" Height="16">
+                                <Image Source="Source/icons8-импортировать-32.png" />
+                            </ContentControl>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"><Run Text="Load Ontology"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Exit" Content="Exit" Grid.Column="1" Margin="17.8,0,17.2,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="165" Height="21" Click="Exit_Click" Background="White"/>
+                    <Button x:Name="SaveExcel"  Grid.Column="1" Margin="17.8,36,17.2,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="165" Height="21" Background="#FFFFFEFE" IsEnabled="False" Click="SaveExcel_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentControl Width="16" Height="16">
+                                <Image Source="Source/icons8-сохранить-32.png" />
+                            </ContentControl>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Text="Save Excel CSL"/>
+                        </StackPanel>
+                    </Button>
+                    <GroupBox x:Name="TestsBox" Margin="0,0,10.8,35.6" Grid.Column="1" Header="Tests" Height="278" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="204">
+                        <Grid>
+                            <Image x:Name="error_t1" Source="Source/icons8-ошибка-32.png" Width="17" Height="17" Margin="137,46,37.2,0" VerticalAlignment="Top" Visibility="Hidden" />
+                            <Image x:Name="error_t3" Source="Source/icons8-ошибка-32.png" Width="17" Height="17" Margin="137,102,37.2,137" Visibility="Hidden" />
+                            <Image x:Name="error_t2" Source="Source/icons8-ошибка-32.png" Width="17" Height="17" Margin="137,72,37.2,167" Visibility="Hidden" />
+                            <Ellipse x:Name="result_t1" Margin="0,46,11.2,0" Fill="Gray" HorizontalAlignment="Right" Width="15" Height="15" VerticalAlignment="Top" />
+                            <Label Margin="10,37,62.2,157.4" Content="Test 1 - MetaGroups" />
+                            <Button x:Name="RunTests" Margin="21,10,22.2,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="148" Height="21" Background="#FFFFFEFE" Click="RunTests_Click" IsEnabled="False">
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl Width="16" Height="16">
+                                        <Image Source="Source/icons8-запустить-команду-32.png" />
+                                    </ContentControl>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Text="Run Tests"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="ReloadOntology" Margin="20,173,23.2,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="148" Height="21" Background="#FFFFFEFE" Click="ReloadOntology_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl Width="16" Height="16">
+                                        <Image Source="Source/icons8-запустить-команду-32.png" />
+                                    </ContentControl>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Text="Reload Ontology"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="ShowResult" Margin="20,199,23.2,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="148" Height="21" Background="#FFFFFEFE" IsEnabled="False">
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl Width="16" Height="16">
+                                        <Image Source="Source/icons8-тест-пройден-32.png" />
+                                    </ContentControl>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Text="Show result"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="CorrectErrors_button" Margin="21,225,22.2,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="148" Height="21" Background="#FFFFFEFE" IsEnabled="False" Click="CorrectErrors_button_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl Width="16" Height="16">
+                                        <Image Source="Source/icons8-редактирование-файла-32.png" />
+                                    </ContentControl>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Text="Correct Errors" Width="79"/>
+                                </StackPanel>
+                            </Button>
+                            <Ellipse x:Name="result_t2" Margin="0,72,11.2,0" Fill="Gray" HorizontalAlignment="Right" Width="15" Height="15" VerticalAlignment="Top" />
+                            <Label Margin="10,63,62.2,131.4" Content="Test 2 - Ontology" />
+                            <Ellipse x:Name="result_t3" Margin="0,100,11.2,0" Fill="Gray" HorizontalAlignment="Right" Width="15" Height="15" VerticalAlignment="Top" />
+                            <Label Margin="10,91,62.2,103.4" Content="Test 3 - UC Groups" />
+                            <Label x:Name="Progress_label" Margin="10,124,11.2,0" Content="" Height="28" VerticalAlignment="Top" />
+                        </Grid>
+                    </GroupBox>
+                    <Button x:Name="Generate_CSL" Grid.Column="1" Margin="30,88,30,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="165" Height="21" Background="#FFFFFEFE" Click="Generate_CSL_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentControl Width="16" Height="16">
+                                <Image Source="Source/icons8-импортировать-32.png" />
+                            </ContentControl>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"><Run Text="Generate Limitations"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="UniClassGroups" Header="UniClassGroups">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="327*"/>
+                        <ColumnDefinition Width="200*" MaxWidth="200"/>
+                    </Grid.ColumnDefinitions>
+                    <syncfusion:SfDataGrid 
+                        x:Name="dataGridUniclassGroups"
+                        HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch" 
+                            FontFamily="Century Gothic" 
+                            FontSize="11" AllowFiltering="True" 
+                            AllowEditing="True" AllowResizingColumns="True" 
+                            ReuseRowsOnItemssourceChange="False" 
+                            AddNewRowPosition="FixedTop" 
+                            ShowGroupDropArea="True" 
+                            AllowDeleting="True" 
+                            Background="White" 
+                            ColumnSizer="Star"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
